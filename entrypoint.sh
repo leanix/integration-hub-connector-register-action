@@ -52,8 +52,7 @@ for REGION in $REGIONS; do
   fi
 
   echo "Using key '${VAULT_SECRET_KEY}' to fetch the SYSTEM user secret from Azure Key Vault '${KEY_VAULT_NAME}' ..."
-  #VAULT_SECRET_VALUE=$(az keyvault secret show --vault-name ${KEY_VAULT_NAME} --name ${VAULT_SECRET_KEY} | jq -r .value)
-  VAULT_SECRET_VALUE=$MTM_CLIENT_SECRET
+  VAULT_SECRET_VALUE=$(az keyvault secret show --vault-name ${KEY_VAULT_NAME} --name ${VAULT_SECRET_KEY} | jq -r .value)
 
   echo "Fetching oauth token from ${REGION_ID}.leanix.net ..."
   TOKEN=$(curl --silent --request POST \
