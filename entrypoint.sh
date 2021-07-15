@@ -72,7 +72,7 @@ for REGION in $REGIONS; do
     --header "Authorization: Bearer ${TOKEN}" \
     --header 'User-Agent: integration-hub-connector-register-action' \
     --header 'Accept: application/json' \
-    | jq -r .'idb')
+    | jq -r .'id')
   
   if [ "${CONNECTOR_ID}" != "null" -a "x${CONNECTOR_ID}" != "x" ] ; then
     echo "Found connector Id: '${CONNECTOR_ID}'  for connector name='${CONNECTOR_NAME}'"
@@ -101,7 +101,7 @@ for REGION in $REGIONS; do
     --data-binary @${NEW_CONNECTOR_FILE} )
 
     if [[ "${CREATE_RESULT}" -eq 200 ]] ; then
-      echo "Successfully created a new connector,  Id: ${CONNECTOR_ID}"
+      echo "Successfully created a new connector '${CONNECTOR_NAME}'"
     else
       echo "Failed to create new connector. Http error code: ${CREATE_RESULT}"
       exit 1
