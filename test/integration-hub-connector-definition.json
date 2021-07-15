@@ -1,5 +1,5 @@
 {
-  "name": "xls6ldif",
+  "name": "xls2ldif",
   "description": "Convert xls files into LDIF format",
   "connectorUrl": "https://functions-westeurope-test-sailors.azurewebsites.net/api/startxlsxconnector?code=5Opu2CCtfyFMrVKZ7YalVLNAEyoNiK1BYRi7KetAPbRsRcXwPX/WSg==",
   "connectorConfiguration": {
