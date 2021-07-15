@@ -1,4 +1,4 @@
-# LeanIX Integration Hub Connector Resgiser Action
+# LeanIX Integration Hub Connector Register Action
 
 This action provides a standard way of registration a connector into the Integration-HUB of all regions.
 
@@ -14,7 +14,7 @@ A simple provision step in the connector's workflow would look like this:
   with:
     environment: 'prod'  
 ```
-This reads the file `integration-hub-connecotr-definition.json` from the root of your repository and register it globally on all prod instances of Integration-Hub.
+This reads the file `integration-hub-connector-definition.json` from the root of your repository and register it globally on all prod instances of Integration-Hub.
 ### Input Parameter
 | input | required | default | description |
 |-------|----------|---------|-------------|
