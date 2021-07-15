@@ -74,8 +74,8 @@ for REGION in $REGIONS; do
     --header 'Accept: application/json' \
     | jq -r .'id')
   
-  if [ "${CONNECTOR_ID}" != "null" -a "x${CONNECTOR_ID}" != "x" ] ; then
-    echo "Found connector Id: '${CONNECTOR_ID}'  for connector name='${CONNECTOR_NAME}'"
+  if [ "${CONNECTOR_ID}" != "null" -a ! -z "${CONNECTOR_ID}" ] ; then
+    echo "Found connector. id='${CONNECTOR_ID}' name='${CONNECTOR_NAME}'"
     UPSERT_RESULT=$(curl --request PUT --write-out %{http_code} --silent --output /dev/null \
     --url "${IHUB_BASE_URL}/connectorTemplates/${CONNECTOR_ID}" \
     --header "Authorization: Bearer ${TOKEN}" \
@@ -87,11 +87,11 @@ for REGION in $REGIONS; do
     if [[ "${UPSERT_RESULT}" -eq 200 ]] ; then
       echo "Successfully modified connector ${CONNECTOR_NAME}"
     else
-      echo "Failed to update connector Id: ${CONNECTOR_ID} . Http error code: ${UPSERT_RESULT}"
+      echo "Failed to update connector. id='${CONNECTOR_ID}' http-code='${UPSERT_RESULT}'"
       exit 1
     fi
   else
-    echo "No remote connector found with the name='${CONNECTOR_NAME} ' . Creating a new connector"
+    echo "No remote connector found with the name='${CONNECTOR_NAME}'. Creating a new connector ..."
     CREATE_RESULT=$(curl --request POST --write-out %{http_code} --silent --output /dev/null \
     --url "${IHUB_BASE_URL}/connectorTemplates" \
     --header "Authorization: Bearer ${TOKEN}" \
@@ -103,7 +103,7 @@ for REGION in $REGIONS; do
     if [[ "${CREATE_RESULT}" -eq 200 ]] ; then
       echo "Successfully created a new connector '${CONNECTOR_NAME}'"
     else
-      echo "Failed to create new connector. Http error code: ${CREATE_RESULT}"
+      echo "Failed to create new connector. http-code='${CREATE_RESULT}'"
       exit 1
     fi
   fi
