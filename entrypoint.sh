@@ -18,8 +18,8 @@ CONNECTOR_NAME=$(cat ${NEW_CONNECTOR_FILE} | jq -r '.name')
 echo "Found provided config for connector ='${CONNECTOR_NAME}'"
 
 echo "Login to Azure ..."
-"az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID"
-"az account set -s $ARM_SUBSCRIPTION_ID"
+az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+az account set -s $ARM_SUBSCRIPTION_ID
 
 if [[ -z "${INPUT_REGION}" ]]; then
   # use all regions
