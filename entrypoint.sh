@@ -88,6 +88,7 @@ for REGION in $REGIONS; do
       echo "Successfully modified connector ${CONNECTOR_NAME}"
     else
       echo "Failed to update connector Id: ${CONNECTOR_ID} . Http error code: ${UPSERT_RESULT}"
+      exit 1
     fi
   else
     echo "No remote connector found with the name='${CONNECTOR_NAME} ' . Creating a new connector"
@@ -103,6 +104,7 @@ for REGION in $REGIONS; do
       echo "Successfully created a new connector,  Id: ${CONNECTOR_ID}"
     else
       echo "Failed to create new connector. Http error code: ${CREATE_RESULT}"
+      exit 1
     fi
   fi
 done
