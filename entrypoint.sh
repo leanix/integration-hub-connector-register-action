@@ -97,10 +97,9 @@ for REGION in $REGIONS; do
     --header "Content-Type: application/json" \
     --header 'User-Agent: integration-hub-connector-register-action' \
     --header 'Accept: application/json' \
-    --data-binary @${NEW_CONNECTOR_FILE} \
-    | jq -r '.id')
+    --data-binary @${NEW_CONNECTOR_FILE} )
 
-    if [[ "${UPSERT_RESULT}" -eq 200 ]] ; then
+    if [[ "${CREATE_RESULT}" -eq 200 ]] ; then
       echo "Successfully created a new connector,  Id: ${CONNECTOR_ID}"
     else
       echo "Failed to create new connector. Http error code: ${CREATE_RESULT}"
