@@ -64,18 +64,20 @@ for REGION in $REGIONS; do
     --data grant_type=client_credentials \
     | jq -r .'access_token')
 
+  IHUB_BASE_URL="https://${REGION_ID}.leanix.net/services/integration-hub/v1"
+
   echo "GET integration-hub/v1/connectorTemplates/name/${CONNECTOR_NAME} ..."
   CONNECTOR_ID=$(curl --silent --request GET \
-    --url "https://${REGION_ID}.leanix.net/services/integration-hub/v1/connectorTemplates/name/${CONNECTOR_NAME}" \
+    --url "${IHUB_BASE_URL}/connectorTemplates/name/${CONNECTOR_NAME}" \
     --header "Authorization: Bearer ${TOKEN}" \
     --header 'User-Agent: integration-hub-connector-register-action' \
     --header 'Accept: application/json' \
-    | jq -r .'id')
+    | jq -r .'idb')
   
-  if [[ "${CONNECTOR_ID}" != "null" ]] ; then
+  if [ "${CONNECTOR_ID}" != "null" -a "x${CONNECTOR_ID}" != "x" ] ; then
     echo "Found connector Id: '${CONNECTOR_ID}'  for connector name='${CONNECTOR_NAME}'"
     UPSERT_RESULT=$(curl --request PUT --write-out %{http_code} --silent --output /dev/null \
-    --url "https://${REGION_ID}.leanix.net/services/integration-hub/v1/connectorTemplates/${CONNECTOR_ID}" \
+    --url "${IHUB_BASE_URL}/connectorTemplates/${CONNECTOR_ID}" \
     --header "Authorization: Bearer ${TOKEN}" \
     --header "Content-Type: application/json" \
     --header 'User-Agent: integration-hub-connector-register-action' \
@@ -90,7 +92,7 @@ for REGION in $REGIONS; do
   else
     echo "No remote connector found with the name='${CONNECTOR_NAME} ' . Creating a new connector"
     CREATE_RESULT=$(curl --request POST --write-out %{http_code} --silent --output /dev/null \
-    --url "https://${REGION_ID}.leanix.net/services/integration-hub/v1/connectorTemplates" \
+    --url "${IHUB_BASE_URL}/connectorTemplates" \
     --header "Authorization: Bearer ${TOKEN}" \
     --header "Content-Type: application/json" \
     --header 'User-Agent: integration-hub-connector-register-action' \
