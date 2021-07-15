@@ -1,0 +1,24 @@
+{
+  "name": "xls2ldif",
+  "description": "Convert xls files into LDIF format",
+  "connectorUrl": "https://functions-westeurope-test-sailors.azurewebsites.net/api/startxlsxconnector?code=5Opu2CCtfyFMrVKZ7YalVLNAEyoNiK1BYRi7KetAPbRsRcXwPX/WSg==",
+  "connectorConfiguration": {
+    "xlsSASUrl": "SasURL for the XLS in azure storage Blob"
+  },
+  "secretsConfiguration": {
+  },
+  "bindingKey": {
+    "connectorType": "xlsType",
+    "connectorId": "xlsId",
+    "connectorVersion": "1.0.0",
+    "processingDirection": "inbound",
+    "processingMode": "full"
+  },
+  "featureFlags": [
+    {
+      "featureFlags": [
+        "connector.xlsx"
+      ]
+    }
+  ]
+}

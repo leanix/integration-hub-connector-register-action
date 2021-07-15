@@ -1,0 +1,17 @@
+name: 'LeanIX Integration Hub Connector Register Action'
+description: 'Provisions a connector into the Integration Hub of all regions.'
+inputs:
+  default_connector_file:
+    description: 'The location of the file that contains the connector definition that is used as the input for this action.'
+    required: true
+    default: 'integration-hub-connector-definition.json'
+  environment:
+    description: 'The environment to provision to, e.g. test or prod'
+    required: true
+    default: 'test'
+  region:
+    description: 'The region to provision to, e.g. westeurope or australiaeast. Leave empty to provision to all regions.'
+    required: false
+runs:
+  using: 'docker'
+  image: 'docker://leanixacrpublic.azurecr.io/integration-hub-connector-register-action:latest'
