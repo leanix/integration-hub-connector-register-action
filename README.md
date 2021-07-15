@@ -1,4 +1,4 @@
-# LeanIX Integration Hub Connector Resgiser Action
+# LeanIX Integration Hub Connector Register Action
 
 This action provides a standard way of registration a connector into the Integration-HUB of all regions.
 
