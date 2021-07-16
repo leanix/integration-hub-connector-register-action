@@ -15,6 +15,10 @@
     "processingMode": "full"
   },
   "featureFlags": [
-    "connector.xlsx"
+    {
+      "featureFlags": [
+        "connector.xlsx"
+      ]
+    }
   ]
 }

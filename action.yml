@@ -1,7 +1,7 @@
 name: 'LeanIX Integration Hub Connector Register Action'
 description: 'Provisions a connector into the Integration Hub of all regions.'
 inputs:
-  default_connector_file:
+  connector_definition_file:
     description: 'The location of the file that contains the connector definition that is used as the input for this action.'
     required: true
     default: 'integration-hub-connector-definition.json'
