@@ -10,8 +10,8 @@ REGION_IDS["australiaeast"]="au"
 REGION_IDS["germanywestcentral"]="de"
 REGION_IDS["horizon"]="horizon" # edge-case for horizon
 
-# The file containing the default connetor defintion from the calling repository
-NEW_CONNECTOR_FILE=/github/workspace/${INPUT_CONNECTOR_DEFINITION_FILE}
+# The file containing the default connector defintion from the calling repository
+NEW_CONNECTOR_FILE=/github/workspace/${INPUT_DEFAULT_CONNECTOR_FILE}
 echo "Reading provided connector definition from file '${NEW_CONNECTOR_FILE}' ..."
 
 CONNECTOR_NAME=$(cat ${NEW_CONNECTOR_FILE} | jq -r '.name')
