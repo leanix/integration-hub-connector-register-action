@@ -18,7 +18,7 @@ This reads the file `integration-hub-connecotr-definition.json` from the root of
 ### Input Parameter
 | input | required | default | description |
 |-------|----------|---------|-------------|
-|default_connector_file|no|`integration-hub-connector-definition.json`|The location of the file that contains the definition of the connector that is used as the input for this action.|
+|connector_definition_file|no|`integration-hub-connector-definition.json`|The location of the file that contains the definition of the connector that is used as the input for this action.|
 |environment|yes|test|The environment to provision to, e.g. test or prod|
 |region|no|-|The region to provision to, e.g. westeurope or australiaeast. Leave empty to provision to all regions.|
 
