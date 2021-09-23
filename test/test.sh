@@ -8,5 +8,6 @@ docker run --rm \
   -e ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET \
   -e INPUT_ENVIRONMENT=test \
   -e INPUT_CONNECTOR_DEFINITION_FILE="test/integration-hub-connector-definition.json" \
+  -e INPUT_CONNECTOR_ICON="test/icon.png" \
   -v $(pwd):/github/workspace \
   leanixacrpublic.azurecr.io/integration-hub-connector-register-action:$1
