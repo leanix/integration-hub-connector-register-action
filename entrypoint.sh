@@ -107,4 +107,30 @@ for REGION in $REGIONS; do
       exit 1
     fi
   fi
+  # Add icon
+  ICON_FILE=/github/workspace/${INPUT_CONNECTOR_ICON}
+  if [ -s $ICON_FILE ] ; then
+    # Re-read the connector ID
+    CONNECTOR_ID=$(curl --silent --request GET \
+    --url "${IHUB_BASE_URL}/connectorTemplates/name/${CONNECTOR_NAME}" \
+    --header "Authorization: Bearer ${TOKEN}" \
+    --header 'User-Agent: integration-hub-connector-register-action' \
+    --header 'Accept: application/json' \
+    | jq -r .'id')
+    echo "Adding icon file $ICON_FILE for connector name='${CONNECTOR_NAME}', Id=$CONNECTOR_ID"
+    # Send the PNG file
+    ICON_RESULT=$(curl --request PUT --write-out %{http_code} --silent --output /dev/null \
+    --url "${IHUB_BASE_URL}/connectorTemplates/${CONNECTOR_ID}/icons" \
+    --header "Authorization: Bearer ${TOKEN}" \
+    --header 'User-Agent: integration-hub-connector-register-action' \
+    --header 'Accept: application/json' \
+    -F file=@${ICON_FILE} )
+
+    if [[ "${ICON_RESULT}" -eq 200 ]] ; then
+      echo "Successfully upsert Icon for connector '${CONNECTOR_NAME}'"
+    else
+      echo "Failed to upsert icon for connector. http-code='${ICON_RESULT}'"
+      exit 1
+    fi
+  fi
 done
