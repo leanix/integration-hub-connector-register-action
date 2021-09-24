@@ -5,6 +5,11 @@ inputs:
     description: 'The location of the file that contains the connector definition that is used as the input for this action.'
     required: true
     default: 'integration-hub-connector-definition.json'
+  connector_icon:
+    description: 'The location of the image file for icon. PNG/JPEG format expected.'
+    required: false
+    default: 'connector.png'
+
   environment:
     description: 'The environment to provision to, e.g. test or prod'
     required: true
