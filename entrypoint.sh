@@ -65,9 +65,9 @@ for REGION in $REGIONS; do
     --data grant_type=client_credentials \
     | jq -r .'access_token')
 
-  echo "GET integration-hub/v1/connectorTemplates/name/${CONNECTOR_NAME} ..."
+  echo "GET integration-hub/v1/connectorTemplates/${CONNECTOR_NAME} ..."
   CONNECTOR_ID=$(curl --silent --request GET \
-    --url "https://${REGION_ID}.leanix.net/services/integration-hub/v1/connectorTemplates/name/${CONNECTOR_NAME}" \
+    --url "https://${REGION_ID}.leanix.net/services/integration-hub/v1/connectorTemplates/${CONNECTOR_NAME}" \
     --header "Authorization: Bearer ${TOKEN}" \
     --header 'User-Agent: integration-hub-connector-register-action' \
     --header 'Accept: application/json' \
