@@ -67,9 +67,9 @@ for REGION in $REGIONS; do
 
   IHUB_BASE_URL="https://${REGION_ID}.leanix.net/services/integration-hub/v1"
 
-  echo "GET integration-hub/v1/connectorTemplates/name/${CONNECTOR_NAME} ..."
+  echo "GET integration-hub/v1/connectorTemplates/${CONNECTOR_NAME} ..."
   CONNECTOR_ID=$(curl --silent --request GET \
-    --url "${IHUB_BASE_URL}/connectorTemplates/name/${CONNECTOR_NAME}" \
+    --url "${IHUB_BASE_URL}/connectorTemplates/${CONNECTOR_NAME}" \
     --header "Authorization: Bearer ${TOKEN}" \
     --header 'User-Agent: integration-hub-connector-register-action' \
     --header 'Accept: application/json' \
