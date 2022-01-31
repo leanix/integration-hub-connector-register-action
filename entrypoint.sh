@@ -113,7 +113,7 @@ for REGION in $REGIONS; do
   if [ -s $ICON_FILE ] ; then
     # Re-read the connector ID
     CONNECTOR_ID=$(curl --silent --request GET \
-    --url "${IHUB_BASE_URL}/connectorTemplates/name/${CONNECTOR_NAME}" \
+    --url "${IHUB_BASE_URL}/connectorTemplates/${CONNECTOR_NAME}" \
     --header "Authorization: Bearer ${TOKEN}" \
     --header 'User-Agent: integration-hub-connector-register-action' \
     --header 'Accept: application/json' \
