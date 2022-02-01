@@ -54,9 +54,13 @@ for REGION in $REGIONS; do
 
   echo "Using key '${VAULT_SECRET_KEY}' to fetch the SYSTEM user secret from Azure Key Vault '${KEY_VAULT_NAME}' ..."
   VAULT_SECRET_VALUE=$(az keyvault secret show --vault-name ${KEY_VAULT_NAME} --name ${VAULT_SECRET_KEY} | jq -r .value)
+  # Fetching proxy credentials
+  PROXY_USER_VALUE=$(az keyvault secret show --vault-name ${KEY_VAULT_NAME} --name integrations-v2-proxy-user | jq -r .value)
+  PROXY_USER_PASSWORD=$(az keyvault secret show --vault-name ${KEY_VAULT_NAME} --name integration-v2-proxy-password | jq -r .value)
+  export HTTPS_PROXY=https://${PROXY_USER_VALUE}:${PROXY_USER_PASSWORD}@eu-proxy.leanix.net:31280
 
   echo "Fetching oauth token from ${REGION_ID}.leanix.net ..."
-  TOKEN=$(curl --silent --request POST \
+  TOKEN=$(curl --proxy-basic -v --request POST \
     --url "https://${REGION_ID}.leanix.net/services/mtm/v1/oauth2/token" \
     --header 'content-type: application/x-www-form-urlencoded' \
     --header 'User-Agent: integration-hub-connector-register-action' \
