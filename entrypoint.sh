@@ -62,7 +62,7 @@ for REGION in $REGIONS; do
   echo "Fetching oauth token from ${REGION_ID}.leanix.net ..."
   TOKEN=$(curl --proxy-basic --silent --request POST \
     --proxy-user "${PROXY_USER_VALUE}" \
-    --proxy-pass "${PROXY_USER_PASSWORD}"
+    --proxy-pass "${PROXY_USER_PASSWORD}" \
     --url "https://${REGION_ID}.leanix.net/services/mtm/v1/oauth2/token" \
     --header 'content-type: application/x-www-form-urlencoded' \
     --header 'User-Agent: integration-hub-connector-register-action' \
