@@ -60,7 +60,7 @@ for REGION in $REGIONS; do
   export HTTPS_PROXY=https://eu-proxy.leanix.net:31280
 
   echo "Fetching oauth token from ${REGION_ID}.leanix.net ..."
-  TOKEN=$(curl --proxy-basic --silent --request POST \
+  TOKEN=$(curl --proxy-basic -v --request POST \
     --proxy-user "${PROXY_USER_VALUE}:${PROXY_USER_PASSWORD}" \
     --url "https://${REGION_ID}.leanix.net/services/mtm/v1/oauth2/token" \
     --header 'content-type: application/x-www-form-urlencoded' \
