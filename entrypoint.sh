@@ -56,7 +56,7 @@ for REGION in $REGIONS; do
   VAULT_SECRET_VALUE=$(az keyvault secret show --vault-name ${KEY_VAULT_NAME} --name ${VAULT_SECRET_KEY} | jq -r .value)
   # Fetching proxy credentials
   PROXY_USER_VALUE=$(az keyvault secret show --vault-name ${KEY_VAULT_NAME} --name integrations-v2-proxy-user | jq -r .value)
-  PROXY_USER_PASSWORD=$(az keyvault secret show --vault-name ${KEY_VAULT_NAME} --name integration-v2-proxy-password | jq -r .value)
+  PROXY_USER_PASSWORD=$(az keyvault secret show --vault-name ${KEY_VAULT_NAME} --name integrations-v2-proxy-password | jq -r .value)
   export HTTPS_PROXY=https://${PROXY_USER_VALUE}:${PROXY_USER_PASSWORD}@eu-proxy.leanix.net:31280
 
   echo "Fetching oauth token from ${REGION_ID}.leanix.net ..."
