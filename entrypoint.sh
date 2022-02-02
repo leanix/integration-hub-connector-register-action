@@ -57,10 +57,10 @@ for REGION in $REGIONS; do
   # Fetching proxy credentials
   PROXY_USER_VALUE=$(az keyvault secret show --vault-name ${KEY_VAULT_NAME} --name integrations-v2-proxy-user | jq -r .value)
   PROXY_USER_PASSWORD=$(az keyvault secret show --vault-name ${KEY_VAULT_NAME} --name integrations-v2-proxy-password | jq -r .value)
-  export HTTPS_PROXY=http://eu-proxy.leanix.net:31280
+  export HTTPS_PROXY=eu-proxy.leanix.net:31280
 
   echo "Fetching oauth token from ${REGION_ID}.leanix.net ..."
-  TOKEN=$(curl --proxy-basic -v --request POST \
+  TOKEN=$(curl --proxy-basic --silent --request POST \
     --proxy-user "${PROXY_USER_VALUE}:${PROXY_USER_PASSWORD}" \
     --url "https://${REGION_ID}.leanix.net/services/mtm/v1/oauth2/token" \
     --header 'content-type: application/x-www-form-urlencoded' \
